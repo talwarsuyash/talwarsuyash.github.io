@@ -6,253 +6,263 @@
 
 (function($) {
 
-	var	$window = $(window),
-		$body = $('body'),
-		$wrapper = $('#wrapper'),
-		$header = $('#header'),
-		$nav = $('#nav'),
-		$main = $('#main'),
-		$navPanelToggle, $navPanel, $navPanelInner;
+    $(document).ready(function() {
+        // $('#navigation').load('nav.html');
+        $('#copyr').load('copyright.html');
+    });
 
-	// Breakpoints.
-		breakpoints({
-			default:   ['1681px',   null       ],
-			xlarge:    ['1281px',   '1680px'   ],
-			large:     ['981px',    '1280px'   ],
-			medium:    ['737px',    '980px'    ],
-			small:     ['481px',    '736px'    ],
-			xsmall:    ['361px',    '480px'    ],
-			xxsmall:   [null,       '360px'    ]
-		});
+    var $window = $(window),
+        $body = $('body'),
+        $wrapper = $('#wrapper'),
+        $header = $('#header'),
+        $nav = $('#navigation'),
+        $main = $('#main'),
+        $navPanelToggle, $navPanel, $navPanelInner;
 
-	/**
-	 * Applies parallax scrolling to an element's background image.
-	 * @return {jQuery} jQuery object.
-	 */
-	$.fn._parallax = function(intensity) {
+    // Breakpoints.
+    breakpoints({
+        default: ['1681px', null],
+        xlarge: ['1281px', '1680px'],
+        large: ['981px', '1280px'],
+        medium: ['737px', '980px'],
+        small: ['481px', '736px'],
+        xsmall: ['361px', '480px'],
+        xxsmall: [null, '360px']
+    });
 
-		var	$window = $(window),
-			$this = $(this);
+    /**
+     * Applies parallax scrolling to an element's background image.
+     * @return {jQuery} jQuery object.
+     */
+    $.fn._parallax = function(intensity) {
 
-		if (this.length == 0 || intensity === 0)
-			return $this;
+        var $window = $(window),
+            $this = $(this);
 
-		if (this.length > 1) {
+        if (this.length == 0 || intensity === 0)
+            return $this;
 
-			for (var i=0; i < this.length; i++)
-				$(this[i])._parallax(intensity);
+        if (this.length > 1) {
 
-			return $this;
+            for (var i = 0; i < this.length; i++)
+                $(this[i])._parallax(intensity);
 
-		}
+            return $this;
 
-		if (!intensity)
-			intensity = 0.25;
+        }
 
-		$this.each(function() {
+        if (!intensity)
+            intensity = 0.25;
 
-			var $t = $(this),
-				$bg = $('<div class="bg"></div>').appendTo($t),
-				on, off;
+        $this.each(function() {
 
-			on = function() {
+            var $t = $(this),
+                $bg = $('<div class="bg"></div>').appendTo($t),
+                on, off;
 
-				$bg
-					.removeClass('fixed')
-					.css('transform', 'matrix(1,0,0,1,0,0)');
+            on = function() {
 
-				$window
-					.on('scroll._parallax', function() {
+                $bg
+                    .removeClass('fixed')
+                    .css('transform', 'matrix(1,0,0,1,0,0)');
 
-						var pos = parseInt($window.scrollTop()) - parseInt($t.position().top);
+                $window
+                    .on('scroll._parallax', function() {
 
-						$bg.css('transform', 'matrix(1,0,0,1,0,' + (pos * intensity) + ')');
+                        var pos = parseInt($window.scrollTop()) - parseInt($t.position().top);
 
-					});
+                        $bg.css('transform', 'matrix(1,0,0,1,0,' + (pos * intensity) + ')');
 
-			};
+                    });
 
-			off = function() {
+            };
 
-				$bg
-					.addClass('fixed')
-					.css('transform', 'none');
+            off = function() {
 
-				$window
-					.off('scroll._parallax');
+                $bg
+                    .addClass('fixed')
+                    .css('transform', 'none');
 
-			};
+                $window
+                    .off('scroll._parallax');
 
-			// Disable parallax on ..
-				if (browser.name == 'ie'			// IE
-				||	browser.name == 'edge'			// Edge
-				||	window.devicePixelRatio > 1		// Retina/HiDPI (= poor performance)
-				||	browser.mobile)					// Mobile devices
-					off();
+            };
 
-			// Enable everywhere else.
-				else {
+            // Disable parallax on ..
+            if (browser.name == 'ie' // IE
+                ||
+                browser.name == 'edge' // Edge
+                ||
+                window.devicePixelRatio > 1 // Retina/HiDPI (= poor performance)
+                ||
+                browser.mobile) // Mobile devices
+                off();
 
-					breakpoints.on('>large', on);
-					breakpoints.on('<=large', off);
+            // Enable everywhere else.
+            else {
 
-				}
+                breakpoints.on('>large', on);
+                breakpoints.on('<=large', off);
 
-		});
+            }
 
-		$window
-			.off('load._parallax resize._parallax')
-			.on('load._parallax resize._parallax', function() {
-				$window.trigger('scroll');
-			});
+        });
 
-		return $(this);
+        $window
+            .off('load._parallax resize._parallax')
+            .on('load._parallax resize._parallax', function() {
+                $window.trigger('scroll');
+            });
 
-	};
+        return $(this);
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
+    };
 
-	// Scrolly.
-		$('.scrolly').scrolly();
+    // Play initial animations on page load.
+    $window.on('load', function() {
+        window.setTimeout(function() {
+            $body.removeClass('is-preload');
+        }, 100);
+    });
 
-	// Background.
-		$wrapper._parallax(0.925);
+    // Scrolly.
+    $('.scrolly').scrolly();
 
-	// Nav Panel.
+    // Background.
+    $wrapper._parallax(0.925);
 
-		// Toggle.
-			$navPanelToggle = $(
-				'<a href="#navPanel" id="navPanelToggle">Menu</a>'
-			)
-				.appendTo($wrapper);
+    // Nav Panel.
 
-			// Change toggle styling once we've scrolled past the header.
-				$header.scrollex({
-					bottom: '5vh',
-					enter: function() {
-						$navPanelToggle.removeClass('alt');
-					},
-					leave: function() {
-						$navPanelToggle.addClass('alt');
-					}
-				});
+    // Toggle.
+    $navPanelToggle = $(
+            '<a href="#navPanel" id="navPanelToggle">Menu</a>'
+        )
+        .appendTo($wrapper);
 
-		// Panel.
-			$navPanel = $(
-				'<div id="navPanel">' +
-					'<nav>' +
-					'</nav>' +
-					'<a href="#navPanel" class="close"></a>' +
-				'</div>'
-			)
-				.appendTo($body)
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'right',
-					target: $body,
-					visibleClass: 'is-navPanel-visible'
-				});
+    // Change toggle styling once we've scrolled past the header.
+    $header.scrollex({
+        bottom: '100vh',
 
-			// Get inner.
-				$navPanelInner = $navPanel.children('nav');
+        enter: function() {
+            $navPanelToggle.removeClass('alt');
+        },
+        leave: function() {
+            $navPanelToggle.addClass('alt');
+        }
+    });
 
-			// Move nav content on breakpoint change.
-				var $navContent = $nav.children();
+    // Panel.
+    // $navPanelClose = $('<a href="#navPanel" class="close"></a>');
+    $navPanel = $(
+            '<div id="navPanel">' +
+            '<nav>' +
+            '</nav>' +
+            '<a href="#navPanel" class="close"></a>' +
+            '</div>'
+        )
+        .appendTo($body)
+        .panel({
+            delay: 500,
+            hideOnClick: true,
+            hideOnSwipe: true,
+            resetScroll: true,
+            resetForms: true,
+            side: 'right',
+            target: $body,
+            visibleClass: 'is-navPanel-visible'
+        });
 
-				breakpoints.on('>medium', function() {
+    // Get inner.
+    $navPanelInner = $navPanel.children('nav');
 
-					// NavPanel -> Nav.
-						$navContent.appendTo($nav);
+    breakpoints.on('>medium', function() {
 
-					// Flip icon classes.
-						$nav.find('.icons, .icon')
-							.removeClass('alt');
+        // NavPanel -> Nav.
+        // $navContent.appendTo($nav);
+        $nav.load('nav.html');
 
-				});
+        // Flip icon classes.
+        $nav.find('.icons, .icon')
+            .removeClass('alt');
 
-				breakpoints.on('<=medium', function() {
+    });
 
-					// Nav -> NavPanel.
-						$navContent.appendTo($navPanelInner);
+    breakpoints.on('<=medium', function() {
 
-					// Flip icon classes.
-						$navPanelInner.find('.icons, .icon')
-							.addClass('alt');
+        // Nav -> NavPanel.
 
-				});
+        $navPanelInner.load('nav.html ul ');
 
-			// Hack: Disable transitions on WP.
-				if (browser.os == 'wp'
-				&&	browser.osVersion < 10)
-					$navPanel
-						.css('transition', 'none');
 
-	// Intro.
-		var $intro = $('#intro');
+        // Flip icon classes.
+        $navPanelInner.find('.icons, .icon')
+            .addClass('alt');
 
-		if ($intro.length > 0) {
+    });
 
-			// Hack: Fix flex min-height on IE.
-				if (browser.name == 'ie') {
-					$window.on('resize.ie-intro-fix', function() {
+    // Hack: Disable transitions on WP.
+    if (browser.os == 'wp' &&
+        browser.osVersion < 10)
+        $navPanel
+        .css('transition', 'none');
 
-						var h = $intro.height();
+    // Intro.
+    var $intro = $('#intro');
 
-						if (h > $window.height())
-							$intro.css('height', 'auto');
-						else
-							$intro.css('height', h);
+    if ($intro.length > 0) {
 
-					}).trigger('resize.ie-intro-fix');
-				}
+        // Hack: Fix flex min-height on IE.
+        if (browser.name == 'ie') {
+            $window.on('resize.ie-intro-fix', function() {
 
-			// Hide intro on scroll (> small).
-				breakpoints.on('>small', function() {
+                var h = $intro.height();
 
-					$main.unscrollex();
+                if (h > $window.height())
+                    $intro.css('height', 'auto');
+                else
+                    $intro.css('height', h);
 
-					$main.scrollex({
-						mode: 'bottom',
-						top: '25vh',
-						bottom: '-50vh',
-						enter: function() {
-							$intro.addClass('hidden');
-						},
-						leave: function() {
-							$intro.removeClass('hidden');
-						}
-					});
+            }).trigger('resize.ie-intro-fix');
+        }
 
-				});
+        // Hide intro on scroll (> small).
+        breakpoints.on('>small', function() {
 
-			// Hide intro on scroll (<= small).
-				breakpoints.on('<=small', function() {
+            $main.unscrollex();
 
-					$main.unscrollex();
+            $main.scrollex({
+                mode: 'bottom',
+                top: '25vh',
+                bottom: '-50vh',
+                enter: function() {
+                    $intro.addClass('hidden');
+                },
+                leave: function() {
+                    $intro.removeClass('hidden');
+                }
+            });
 
-					$main.scrollex({
-						mode: 'middle',
-						top: '15vh',
-						bottom: '-15vh',
-						enter: function() {
-							$intro.addClass('hidden');
-						},
-						leave: function() {
-							$intro.removeClass('hidden');
-						}
-					});
+        });
 
-			});
+        // Hide intro on scroll (<= small).
+        breakpoints.on('<=small', function() {
 
-		}
+            $main.unscrollex();
+
+            $main.scrollex({
+                mode: 'middle',
+                top: '15vh',
+                bottom: '-15vh',
+                enter: function() {
+                    $intro.addClass('hidden');
+                },
+                leave: function() {
+                    $intro.removeClass('hidden');
+                }
+            });
+
+        });
+
+    }
 
 })(jQuery);
