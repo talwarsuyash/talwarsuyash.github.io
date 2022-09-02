@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>Photographs</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/material-photo-gallery.css" />
+    <noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo">Photographs</a>
+        </header>
+
+        <!-- Nav -->
+        <div id="navigation"></div>
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Post -->
+            <section class="post">
+                <!-- Image -->
+                <h2>Featured</h2>
+                <span class="image fit"><img src="images/pic01.jpg" alt="" /></span>
+
+                <div class="m-p-g">
+                    <div class="m-p-g__thumbs" data-google-image-layout data-max-height="350">
+                        <div class="box alt">
+                            <img src="images/pic01_thumb.jpg" data-full="images/pic01.jpg" class="m-p-g__thumbs-img" />
+                            <img src="images/pic02_thumb.jpg" data-full="images/pic02.jpg" class="m-p-g__thumbs-img" />
+                            <img src="images/pic03_thumb.jpg" data-full="images/pic03.jpg" class="m-p-g__thumbs-img" />
+                            <!-- Rest of your thumbnails... -->
+                        </div>
+                        <div class="m-p-g__fullscreen"></div>
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+
+        <!-- Footer -->
+
+        <!-- Copyright -->
+        <div id="copyright">
+            <ul>
+                <li>&copy; Untitled</li>
+                <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/material-photo-gallery.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/material-photo-gallery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#navigation').load('nav.html');
+        });
+    </script>
+    <script>
+        var elem = document.querySelector('.m-p-g');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var gallery = new MaterialPhotoGallery(elem);
+        });
+    </script>
+</body>
+
+</html>
