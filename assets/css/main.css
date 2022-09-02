@@ -2626,7 +2626,7 @@ a.image:hover img {
 .galleria {
     padding-top: 1rem;
     width: 72rem;
-    height: inherit;
+    height: 80vh;
     transition: "none",
 }
 
