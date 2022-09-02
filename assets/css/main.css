@@ -444,7 +444,7 @@ hr {
 }
 
 body {
-    color: #212931;
+    color: wheat;
 }
 
 body,
@@ -2591,6 +2591,17 @@ input[type="radio"]:focus+label:before {
     }
     .image.main {
         margin: 2rem 0;
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .image.fit {
+        margin: 2rem 0;
+    }
+    .image.main {
+        margin: 2rem 0;
+        height: 120px;
     }
 }
 
@@ -2610,6 +2621,13 @@ a.image:hover img {
     -webkit-transform: scale(1.05);
     -ms-transform: scale(1.05);
     transform: scale(1.05);
+}
+
+.galleria {
+    padding-top: 1rem;
+    width: 72rem;
+    height: inherit;
+    transition: "none",
 }
 
 
@@ -3217,7 +3235,7 @@ body.is-preload #wrapper.fade-in:before {
 
 #intro {
     color: wheat;
-    padding: 8rem 4rem 6rem 4rem;
+    padding: 8rem 4rem 8rem 4rem;
     -moz-align-items: center;
     -webkit-align-items: center;
     -ms-align-items: center;
@@ -3373,10 +3391,10 @@ body.is-preload #wrapper.fade-in:before {
 }
 
 body.is-preload #intro {
-    -moz-transform: translateY(2rem);
-    -webkit-transform: translateY(2rem);
-    -ms-transform: translateY(2rem);
-    transform: translateY(2rem);
+    -moz-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
     opacity: 0;
 }
 
@@ -3390,7 +3408,7 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
 
 @media screen and (max-width: 980px) {
     #intro {
-        padding: 4rem 4rem 2rem 4rem;
+        padding: 4rem 4rem 4rem 4rem;
         min-height: 100vh;
     }
     #intro p br {
@@ -3403,7 +3421,7 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
 
 @media screen and (max-width: 736px) {
     #intro {
-        padding: 3rem 2rem 1rem 2rem;
+        padding: 3rem 2rem 3rem 2rem;
         min-height: 100vh;
     }
     #intro h1 {
@@ -3414,9 +3432,6 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
     #intro p {
         font-size: 1rem;
         margin-top: 0rem;
-    }
-    #intro .actions {
-        display: none;
     }
 }
 
@@ -3554,19 +3569,20 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
     -ms-transition: -ms-transform 1s ease, opacity 1s ease;
     transition: transform 1s ease, opacity 1s ease;
     background: rgba(34, 41, 49, 255);
-    height: fit-content;
+    height: 10vh;
     line-height: inherit;
     margin: 0 auto;
     position: relative;
-    max-width: 72rem;
+    max-width: 90vw;
     z-index: 2;
     border-bottom: dotted 0.5px;
     border-top: dotted 0.5px;
-    padding: 0.5rem 0 0.5rem 0;
+    padding: 0.5rem;
 }
 
 #nav ul.divided li {
     border-top-color: wheat;
+    height: fit-content;
 }
 
 #nav ul.icons li a.icon:hover:before {
@@ -3628,6 +3644,7 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
     display: -webkit-flex;
     display: -ms-flex;
     display: flex;
+    justify-content: space-evenly;
     -moz-flex-grow: 1;
     -webkit-flex-grow: 1;
     -ms-flex-grow: 1;
@@ -3642,11 +3659,13 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
     list-style: none;
     margin-bottom: 0;
     padding-left: 0;
+    max-width: 80vw;
     text-transform: uppercase;
 }
 
 #nav ul.links li {
     display: block;
+    margin: auto 0.5rem;
 }
 
 #nav ul.links li a {
@@ -3656,7 +3675,7 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     display: block;
     outline: none;
-    padding: 0 2rem;
+    padding: 0 auto;
 }
 
 #nav ul.links li a:hover {
@@ -3686,7 +3705,12 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
     -webkit-flex-shrink: 0;
     -ms-flex-shrink: 0;
     flex-shrink: 0;
-    margin-bottom: 0;
+    margin: 0 auto;
+    width: 20vw;
+}
+
+#nav ul.icons li {
+    margin: auto;
 }
 
 
@@ -3703,8 +3727,8 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
     position: relative;
     margin: 0 auto;
     width: calc(100% - 4rem);
-    max-width: 72rem;
-    height: 32rem;
+    max-width: 90vw;
+    height: 80vh;
     z-index: 2;
 }
 
@@ -3726,6 +3750,7 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
     padding: 2rem 2rem 0rem 2rem;
     display: none;
     flex-direction: column;
+    height: inherit;
 }
 
 #main>.post header.major>.date {
@@ -3848,11 +3873,11 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 #main>section>section.split>p {
-    width: min-content;
+    width: 50vw;
     flex-grow: 1;
 }
 
@@ -3931,12 +3956,6 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
         padding: 2.5rem;
         width: 50%;
     }
-    #main>section>section.split>p {
-        width: inherit;
-    }
-    #main>section>section.split {
-        justify-content: space-evenly;
-    }
 }
 
 @media screen and (max-width: 736px) {
@@ -3976,6 +3995,9 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
     #main>* {
         padding: 2rem 2rem 0.1rem 2rem;
     }
+    #main.post section.image img {
+        height: 50%;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -4004,12 +4026,12 @@ hr.post-hr {
     font-size: 0.8rem;
     font-weight: 900;
     letter-spacing: 0.075em;
-    line-height: 1.5;
+    height: 10vh;
     text-align: center;
     text-transform: uppercase;
-    margin: 4rem auto 4rem auto;
+    margin: 2rem auto 2rem auto;
     width: calc(100% - 4rem);
-    max-width: 72rem;
+    max-width: 90vw;
     z-index: 2;
 }
 
