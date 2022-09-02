@@ -2571,7 +2571,7 @@ input[type="radio"]:focus+label:before {
 }
 
 .image.fit img {
-    width: 100%;
+    width: 50%;
 }
 
 .image.main {
@@ -3260,6 +3260,7 @@ body.is-preload #wrapper.fade-in:before {
     text-align: center;
     z-index: 1;
     height: 100vh;
+
 }
 
 #intro input,
@@ -3522,11 +3523,12 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
     border-color: wheat;
     border-width: 5px !important;
     font-family: "Source Sans Pro", Helvetica, sans-serif;
-    font-size: 2.25rem;
+    font-size: 1.25rem;
     font-weight: 900;
     letter-spacing: 0.075em;
     line-height: 1;
     padding: 1rem 1.75rem;
+    margin-top: 2vh;
     text-transform: uppercase;
     visibility: visible;
 }
