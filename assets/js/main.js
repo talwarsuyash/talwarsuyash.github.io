@@ -6,16 +6,11 @@
 
 (function($) {
 
-    $(document).ready(function() {
-        // $('#navigation').load('nav.html');
-        $('#copyr').load('copyright.html');
-    });
-
     var $window = $(window),
         $body = $('body'),
         $wrapper = $('#wrapper'),
         $header = $('#header'),
-        $nav = $('#navigation'),
+        $nav = $('#nav'),
         $main = $('#main'),
         $navPanelToggle, $navPanel, $navPanelInner;
 
@@ -28,6 +23,14 @@
         small: ['481px', '736px'],
         xsmall: ['361px', '480px'],
         xxsmall: [null, '360px']
+    });
+    $window.on('load', function() {
+        $("#nav").load("nav.html");
+        $("#copyright").load("copyright.html");
+        Galleria.loadTheme('assets/galleria/themes/classic/galleria.classic.min.js');
+        Galleria.run('.galleria');
+        document.getElementById("me").style.display = "flex";
+        // $bg.css('transform', 'matrix(1, 0, 0, 1, 0, 0)');
     });
 
     /**
@@ -69,7 +72,7 @@
                 $window
                     .on('scroll._parallax', function() {
 
-                        var pos = parseInt($window.scrollTop()) - parseInt($t.position().top);
+                        var pos = parseInt($window.scrollTop() - parseInt($t.position().top));
 
                         $bg.css('transform', 'matrix(1,0,0,1,0,' + (pos * intensity) + ')');
 
@@ -130,75 +133,6 @@
 
     // Background.
     $wrapper._parallax(0.925);
-
-    // Nav Panel.
-
-    // Toggle.
-    $navPanelToggle = $(
-            '<a href="#navPanel" id="navPanelToggle">Menu</a>'
-        )
-        .appendTo($wrapper);
-
-    // Change toggle styling once we've scrolled past the header.
-    $header.scrollex({
-        bottom: '100vh',
-
-        enter: function() {
-            $navPanelToggle.removeClass('alt');
-        },
-        leave: function() {
-            $navPanelToggle.addClass('alt');
-        }
-    });
-
-    // Panel.
-    // $navPanelClose = $('<a href="#navPanel" class="close"></a>');
-    $navPanel = $(
-            '<div id="navPanel">' +
-            '<nav>' +
-            '</nav>' +
-            '<a href="#navPanel" class="close"></a>' +
-            '</div>'
-        )
-        .appendTo($body)
-        .panel({
-            delay: 500,
-            hideOnClick: true,
-            hideOnSwipe: true,
-            resetScroll: true,
-            resetForms: true,
-            side: 'right',
-            target: $body,
-            visibleClass: 'is-navPanel-visible'
-        });
-
-    // Get inner.
-    $navPanelInner = $navPanel.children('nav');
-
-    breakpoints.on('>medium', function() {
-
-        // NavPanel -> Nav.
-        // $navContent.appendTo($nav);
-        $nav.load('nav.html');
-
-        // Flip icon classes.
-        $nav.find('.icons, .icon')
-            .removeClass('alt');
-
-    });
-
-    breakpoints.on('<=medium', function() {
-
-        // Nav -> NavPanel.
-
-        $navPanelInner.load('nav.html ul ');
-
-
-        // Flip icon classes.
-        $navPanelInner.find('.icons, .icon')
-            .addClass('alt');
-
-    });
 
     // Hack: Disable transitions on WP.
     if (browser.os == 'wp' &&
@@ -262,7 +196,6 @@
             });
 
         });
-
     }
 
 })(jQuery);
