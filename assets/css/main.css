@@ -462,7 +462,6 @@ a {
     -webkit-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     -ms-transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    border-bottom: dotted 1px;
     text-decoration: none;
 }
 
@@ -2625,8 +2624,8 @@ a.image:hover img {
 
 .galleria {
     padding-top: 1rem;
-    width: 72rem;
-    height: 80vh;
+    width: inherit;
+    height: inherit;
     transition: "none",
 }
 
@@ -3681,6 +3680,7 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
 }
 
 #nav ul.links li a:hover {
+    cursor: pointer;
     color: inherit !important;
 }
 
@@ -4027,7 +4027,7 @@ hr.post-hr {
     font-size: 0.8rem;
     font-weight: 900;
     letter-spacing: 0.075em;
-    height: 10vh;
+    height: 3vh;
     text-align: center;
     text-transform: uppercase;
     margin: 2rem auto 2rem auto;
