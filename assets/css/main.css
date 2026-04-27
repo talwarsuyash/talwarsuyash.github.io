@@ -608,8 +608,8 @@ textarea {
 }
 
 a {
-    color: #212931;
-    border-bottom-color: rgba(33, 41, 49, 0.5);
+    color: wheat;
+    border-bottom-color: rgba(245, 222, 179, 0.5);
 }
 
 a:hover {
@@ -619,7 +619,7 @@ a:hover {
 
 strong,
 b {
-    color: #212931;
+    color: wheat;
 }
 
 .row {
@@ -3667,6 +3667,8 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 #nav ul.links li a {
@@ -3685,11 +3687,12 @@ body.is-preload #intro:not(.hidden)+#header+#nav {
 }
 
 #nav ul.links li.active {
-    background-color: wheat;
+    background-color: rgba(245, 222, 179, 0.15);
+    border-radius: 0.5rem;
 }
 
 #nav ul.links li.active a {
-    color: #1e252d;
+    color: wheat;
 }
 
 #nav ul.links li.active a:hover {
