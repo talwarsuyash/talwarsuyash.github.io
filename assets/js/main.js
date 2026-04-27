@@ -34,8 +34,12 @@
         $("#work").load("section-work.html");
         $("#contact").load("section-contact.html");
         $("#photos").load("section-photos.html", function() {
-            Galleria.loadTheme('assets/galleria/themes/classic/galleria.classic.min.js');
-            Galleria.run('.galleria');
+            // If the user happened to navigate to photos before it finished loading
+            if ($('#photos').is(':visible') && !window.galleriaInitialized) {
+                Galleria.loadTheme('assets/galleria/themes/classic/galleria.classic.min.js');
+                Galleria.run('.galleria');
+                window.galleriaInitialized = true;
+            }
         });
         
         document.getElementById("me").style.display = "flex";
