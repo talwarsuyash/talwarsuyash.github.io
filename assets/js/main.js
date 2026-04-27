@@ -27,8 +27,17 @@
     $window.on('load', function() {
         $("#nav").load("nav.html");
         $("#copyright").load("copyright.html");
-        Galleria.loadTheme('assets/galleria/themes/classic/galleria.classic.min.js');
-        Galleria.run('.galleria');
+        
+        // Load sections dynamically
+        $("#me").load("section-me.html");
+        $("#projects").load("section-projects.html");
+        $("#work").load("section-work.html");
+        $("#contact").load("section-contact.html");
+        $("#photos").load("section-photos.html", function() {
+            Galleria.loadTheme('assets/galleria/themes/classic/galleria.classic.min.js');
+            Galleria.run('.galleria');
+        });
+        
         document.getElementById("me").style.display = "flex";
         // $bg.css('transform', 'matrix(1, 0, 0, 1, 0, 0)');
     });
@@ -129,7 +138,7 @@
     });
 
     // Scrolly.
-    $('.scrolly').scrolly();
+    $('.scrolly').scrolly({ speed: 500 });
 
     // Background.
     $wrapper._parallax(0.925);
@@ -170,9 +179,17 @@
                 bottom: '-50vh',
                 enter: function() {
                     $intro.addClass('hidden');
-                },
-                leave: function() {
-                    $intro.removeClass('hidden');
+                    
+                    // Lock the page: wait for animation, then remove intro from flow
+                    setTimeout(function() {
+                        if (!$intro.hasClass('locked')) {
+                            $intro.addClass('locked');
+                            $('html,body').stop(true, true); // Stop ongoing scrolly animations
+                            var introHeight = $intro.outerHeight();
+                            $intro.hide(); // Remove from flow
+                            $(window).scrollTop($(window).scrollTop() - introHeight); // Adjust scroll position seamlessly
+                        }
+                    }, 500); // 500ms aligns with scrolly's smooth-scroll duration
                 }
             });
 
@@ -189,9 +206,17 @@
                 bottom: '-15vh',
                 enter: function() {
                     $intro.addClass('hidden');
-                },
-                leave: function() {
-                    $intro.removeClass('hidden');
+                    
+                    // Lock the page: wait for animation, then remove intro from flow
+                    setTimeout(function() {
+                        if (!$intro.hasClass('locked')) {
+                            $intro.addClass('locked');
+                            $('html,body').stop(true, true); // Stop ongoing scrolly animations
+                            var introHeight = $intro.outerHeight();
+                            $intro.hide(); // Remove from flow
+                            $(window).scrollTop($(window).scrollTop() - introHeight); // Adjust scroll position seamlessly
+                        }
+                    }, 500);
                 }
             });
 
