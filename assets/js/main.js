@@ -33,14 +33,7 @@
         $("#projects").load("section-projects.html");
         $("#work").load("section-work.html");
         $("#contact").load("section-contact.html");
-        $("#photos").load("section-photos.html", function() {
-            // If the user happened to navigate to photos before it finished loading
-            if ($('#photos').is(':visible') && !window.galleriaInitialized) {
-                Galleria.loadTheme('assets/galleria/themes/classic/galleria.classic.min.js');
-                Galleria.run('.galleria');
-                window.galleriaInitialized = true;
-            }
-        });
+        $("#photos").load("section-photos.html");
         
         document.getElementById("me").style.display = "flex";
         // $bg.css('transform', 'matrix(1, 0, 0, 1, 0, 0)');
@@ -139,6 +132,11 @@
         window.setTimeout(function() {
             $body.removeClass('is-preload');
         }, 100);
+    });
+
+    // Disable right-click on images and lightbox overlay
+    $body.on('contextmenu', 'img, #lightbox, #lightboxOverlay', function(e) {
+        e.preventDefault();
     });
 
     // Scrolly.
